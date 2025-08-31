@@ -21,3 +21,5 @@ alembic upgrade head
 ```bash
 uvicorn app.main:app --reload
 ```
+
+注意：正式的生产环节需要去掉最后的`--reload`部分，以关闭 debug 模式
