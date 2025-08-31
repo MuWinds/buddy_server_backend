@@ -1,0 +1,2 @@
+# buddy_server_backend
+给Expense-Buddy用的后端，基于PostgreSQL和FastAPI
