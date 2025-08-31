@@ -16,7 +16,13 @@ alembic upgrade head
 
 3.复制项目根目录下的.env.example 并更名为.env，修改配置文件
 
-4.输入下面的指令启动项目
+4.配置 Python 环境，输入下面的指令安装依赖
+
+```bash
+pip install requirements.txt
+```
+
+5.输入下面的指令启动项目
 
 ```bash
 uvicorn app.main:app --reload
