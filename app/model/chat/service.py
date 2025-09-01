@@ -51,7 +51,7 @@ async def update_chat_history(
     await db.refresh(chat_session)
 
 
-async def get_chat_response(db: AsyncSession, session_id: int, question: str) -> str:
+async def chat_request(db: AsyncSession, session_id: int, question: str) -> str:
     chat_session = await get_chat_session(db, session_id)
     if not chat_session:
         return False

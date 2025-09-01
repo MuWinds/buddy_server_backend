@@ -6,13 +6,7 @@
 
 1.在 PostgreSQL 里新建一个名为 buddy 的模式
 
-2.输入指令
-
-```bash
-alembic upgrade head
-```
-
-将数据库表结构导入 PostgreSQL 中
+2.运行项目根目录下的 agent_character.sql，将数据库表结构导入 PostgreSQL 中
 
 3.复制项目根目录下的.env.example 并更名为.env，修改配置文件
 

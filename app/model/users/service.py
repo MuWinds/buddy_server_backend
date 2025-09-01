@@ -46,7 +46,7 @@ async def create_user(db: AsyncSession, account: str, password: str) -> User:
     user = User(
         account=account,
         hashed_password=hash_password(password),
-        agent_transaction_limit=1000,
+        limit={"transaction": 1000, "agent": 1000},
     )
     db.add(user)
     await db.commit()
@@ -84,3 +84,10 @@ async def get_current_user(
     if user is None:
         raise credentials_exception
     return user
+
+
+async def update_user_limit(db: AsyncSession, user: User, limit: dict) -> None:
+    user.limit = limit
+    db.add(user)
+    await db.commit()
+    await db.refresh(user)

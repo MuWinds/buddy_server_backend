@@ -25,5 +25,15 @@ async def get_chat_response(
     current_user: User = Depends(User_Service.get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    response = await service.get_chat_response(db, session_id, question=user_prompt)
+    user_limit = dict(current_user.limit)
+    if current_user is None or user_limit["agent"] <= 0:
+        return {
+            "success": False,
+            "response": "User not permission",
+            "exception_reason": "User limit exceeded or User does not exist",
+        }
+    answer = await service.chat_request(db, session_id, question=user_prompt)
+    user_limit["agent"] -= 1
+    await User_Service.update_user_limit(db, current_user, user_limit)
+    response = {"success": True, "response": answer}
     return response
